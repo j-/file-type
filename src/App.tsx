@@ -68,7 +68,15 @@ class App extends React.Component<{}, State> {
 		return (
 			<div className="App">
 				<h1>File Types</h1>
-				<p>Drag+drop or copy+paste files into this window.</p>
+				<p>
+					Drag+drop or copy+paste files into this window. Uses
+					{' '}
+					<code><a href="https://github.com/sindresorhus/file-type">file-type</a></code>
+					{' '}
+					to determine the type of each file based on its
+					{' '}
+					<a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic number</a>.
+				</p>
 				<ol>
 					{this.renderListItems()}
 				</ol>
