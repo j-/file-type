@@ -23,9 +23,10 @@ const files = dataTransfers.flatMap((dataTransfer) => dataTransfer.files);
 // Get array buffer from each file
 const buffers = files.flatMap((file) => (
 	new Promise<Buffer>((resolve) => {
+		const blob = file.slice(0, 4100);
 		const reader = new FileReader();
 		reader.addEventListener('load', () => resolve(reader.result));
-		reader.readAsArrayBuffer(file);
+		reader.readAsArrayBuffer(blob);
 	})
 ));
 
