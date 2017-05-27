@@ -88,9 +88,9 @@ class App extends React.Component<{}, State> {
 
 	private renderListItems() {
 		return this.state.list.map(({ name, type }, i) => (
-			<li key={i}>
-				<strong>{name}</strong><br />
-				<span>{type || <em>Unknown</em>}</span>
+			<li className="App-file" key={i}>
+				<span className="App-file-name">{name}</span><br />
+				<span className="App-file-type">{type || <em>Unknown</em>}</span>
 			</li>
 		));
 	}

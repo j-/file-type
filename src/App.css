@@ -1,4 +1,22 @@
+.App {
+	margin: 1em;
+	max-width: 50em;
+}
+
 .App-list {
 	display: flex;
 	flex-direction: column-reverse;
+}
+
+.App-file {
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+.App-file-name {
+	color: #555;
+}
+
+.App-file-type {
+	font-size: 1.5em;
 }
