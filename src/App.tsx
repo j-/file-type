@@ -98,7 +98,7 @@ class App extends React.Component<{}, State> {
 			<div className="App">
 				<h1>File Types</h1>
 				<ProjectDescription />
-				<p>File list (latest at top)</p>
+				<h2>File List (latest at top)</h2>
 				<p>{fileUpload}</p>
 				<p>{clearButton}</p>
 				<FileList files={list} />
