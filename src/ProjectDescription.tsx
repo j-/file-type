@@ -2,7 +2,7 @@ import * as React from 'react';
 
 const ProjectDescription = () => (
 	<p>
-		Drag+drop or copy+paste files into this window. Uses
+		Upload, drag+drop or copy+paste files into this window. Uses
 		{' '}
 		<code><a href="https://github.com/sindresorhus/file-type">file-type</a></code>
 		{' '}

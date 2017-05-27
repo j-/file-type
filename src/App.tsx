@@ -6,39 +6,6 @@ import ProjectDescription from './ProjectDescription';
 
 const { fromEvent, merge, zip } = Observable;
 
-// Event streams
-const pasteEvents = fromEvent<ClipboardEvent>(window, 'paste');
-const dragEvents = fromEvent<DragEvent>(window, 'dragover');
-const dropEvents = fromEvent<DragEvent>(window, 'drop');
-const dragAndDropEvents = merge(dragEvents, dropEvents);
-
-// Get transfer data from events
-const dropData = dropEvents.pluck<DragEvent, DataTransfer>('dataTransfer');
-const pasteData = pasteEvents.pluck<ClipboardEvent, DataTransfer>('clipboardData');
-const dataTransfers = merge(dropData, pasteData);
-
-// Grab files from each data transfer
-const files = dataTransfers.flatMap((dataTransfer) => dataTransfer.files);
-
-// Get array buffer from each file
-const buffers = files.flatMap((file) => (
-	new Promise<Buffer>((resolve) => {
-		const blob = file.slice(0, 4100);
-		const reader = new FileReader();
-		reader.addEventListener('load', () => resolve(reader.result));
-		reader.readAsArrayBuffer(blob);
-	})
-));
-
-// Get file information from each buffer
-const fileTypes = buffers.map((result) => fileType(result));
-
-// Join file information
-const dataList = zip(files, fileTypes, (file, type) => ({
-	name: file.name,
-	type: type ? type.mime : null,
-}));
-
 interface State {
 	list: {
 		name: string;
@@ -49,6 +16,7 @@ interface State {
 class App extends React.Component<{}, State> {
 	private dragDropEventSubscription: Subscription;
 	private dataTransferSubscription: Subscription;
+	private fileInput: HTMLInputElement;
 
 	constructor() {
 		super();
@@ -59,6 +27,43 @@ class App extends React.Component<{}, State> {
 	}
 
 	public componentDidMount() {
+		// Event streams
+		const pasteEvents = fromEvent<ClipboardEvent>(window, 'paste');
+		const dragEvents = fromEvent<DragEvent>(window, 'dragover');
+		const dropEvents = fromEvent<DragEvent>(window, 'drop');
+		const changeEvents = fromEvent<Event>(this.fileInput, 'change');
+		const dragAndDropEvents = merge(dragEvents, dropEvents);
+
+		// Get transfer data from events
+		const dropData = dropEvents.pluck<DragEvent, DataTransfer>('dataTransfer');
+		const pasteData = pasteEvents.pluck<ClipboardEvent, DataTransfer>('clipboardData');
+		const dataTransfers = merge(dropData, pasteData);
+
+		// Grab files from each data transfer
+		const dataTransferFiles = dataTransfers.flatMap((dataTransfer) => dataTransfer.files);
+		const changedFiles = changeEvents.flatMap(() => this.fileInput.files || []);
+		const files = merge(dataTransferFiles, changedFiles);
+
+		// Get array buffer from each file
+		const buffers = files.flatMap((file) => (
+			new Promise<Buffer>((resolve) => {
+				const blob = file.slice(0, 4100);
+				const reader = new FileReader();
+				reader.addEventListener('load', () => resolve(reader.result));
+				reader.readAsArrayBuffer(blob);
+			})
+		));
+
+		// Get file information from each buffer
+		const fileTypes = buffers.map((result) => fileType(result));
+
+		// Join file information
+		const dataList = zip(files, fileTypes, (file, type) => ({
+			name: file.name,
+			type: type ? type.mime : null,
+		}));
+
+		// Subscribe to events
 		this.dragDropEventSubscription = dragAndDropEvents
 			.subscribe((e) => e.preventDefault());
 		this.dataTransferSubscription = dataList
@@ -77,14 +82,22 @@ class App extends React.Component<{}, State> {
 	public render() {
 		const canClear = this.state.list.length > 0;
 		const clearButton = canClear && (
-			<button type="button" onClick={this.clearFiles}>Clear</button>
+			<button type="button" onClick={this.clearFiles}>Clear Files</button>
+		);
+		const fileUpload = (
+			<input
+				type="file"
+				ref={(input) => this.fileInput = input}
+				multiple={true}
+			/>
 		);
 		return (
 			<div className="App">
 				<h1>File Types</h1>
 				<ProjectDescription />
 				<p>File list (latest at top)</p>
-				{clearButton}
+				<p>{fileUpload}</p>
+				<p>{clearButton}</p>
 				<ol className="App-list">
 					{this.renderListItems()}
 				</ol>
