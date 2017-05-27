@@ -13,6 +13,7 @@
   "devDependencies": {
     "@types/file-type": "^0.0.2",
     "file-type": "^4.3.0",
+    "normalize.css": "^7.0.0",
     "react-scripts-ts": "2.2.0",
     "rxjs": "^5.4.0"
   },
