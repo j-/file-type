@@ -2,6 +2,7 @@ import * as React from 'react';
 import './App.css';
 import { Observable, Subscription } from 'rxjs';
 import * as fileType from 'file-type';
+import { FileTypeResult } from 'file-type';
 
 const { fromEvent, merge } = Observable;
 
@@ -31,15 +32,30 @@ const buffers = files.flatMap((file) => (
 // Get file information from each buffer
 const fileTypes = buffers.map((result) => fileType(result));
 
-class App extends React.Component<{}, null> {
+interface State {
+	types: FileTypeResult[];
+}
+
+class App extends React.Component<{}, State> {
 	private dragDropEventSubscription: Subscription;
 	private dataTransferSubscription: Subscription;
+
+	constructor() {
+		super();
+		this.state = {
+			types: [],
+		};
+	}
 
 	public componentDidMount() {
 		this.dragDropEventSubscription = dragAndDropEvents
 			.subscribe((e) => e.preventDefault());
 		this.dataTransferSubscription = fileTypes
-			.subscribe((file) => console.log(file));
+			.subscribe((type) => (
+				this.setState((state) => ({
+					types: state.types.concat(type),
+				}))
+			));
 	}
 
 	public componentWillUnmount() {
@@ -47,13 +63,24 @@ class App extends React.Component<{}, null> {
 		this.dataTransferSubscription.unsubscribe();
 	}
 
-	render() {
+	public render() {
 		return (
 			<div className="App">
 				<h1>File Types</h1>
-				<p>Drag+drop or copy+paste files into this window. Check console for results.</p>
+				<p>Drag+drop or copy+paste files into this window.</p>
+				<ol>
+					{this.renderListItems()}
+				</ol>
 			</div>
 		);
+	}
+
+	private renderListItems() {
+		return this.state.types.map((types, i) => (
+			<li key={i}>
+				{types && types.mime}
+			</li>
+		));
 	}
 }
 
