@@ -11,7 +11,10 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
-    "react-scripts-ts": "2.2.0"
+    "@types/file-type": "^0.0.2",
+    "file-type": "^4.3.0",
+    "react-scripts-ts": "2.2.0",
+    "rxjs": "^5.4.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
