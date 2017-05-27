@@ -3,6 +3,7 @@ import './App.css';
 import { Observable, Subscription } from 'rxjs';
 import * as fileType from 'file-type';
 import ProjectDescription from './ProjectDescription';
+import FileList from './FileList';
 
 const { fromEvent, merge, zip } = Observable;
 
@@ -80,7 +81,8 @@ class App extends React.Component<{}, State> {
 	}
 
 	public render() {
-		const canClear = this.state.list.length > 0;
+		const { list } = this.state;
+		const canClear = list.length > 0;
 		const clearButton = canClear && (
 			<button type="button" onClick={this.clearFiles}>Clear Files</button>
 		);
@@ -98,20 +100,9 @@ class App extends React.Component<{}, State> {
 				<p>File list (latest at top)</p>
 				<p>{fileUpload}</p>
 				<p>{clearButton}</p>
-				<ol className="App-list">
-					{this.renderListItems()}
-				</ol>
+				<FileList files={list} />
 			</div>
 		);
-	}
-
-	private renderListItems() {
-		return this.state.list.map(({ name, type }, i) => (
-			<li className="App-file" key={i}>
-				<span className="App-file-name">{name}</span><br />
-				<span className="App-file-type">{type || <em>Unknown</em>}</span>
-			</li>
-		));
 	}
 
 	private clearFiles() {

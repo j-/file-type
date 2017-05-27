@@ -1,0 +1,12 @@
+.File {
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+.File-name {
+	color: #555;
+}
+
+.File-type {
+	font-size: 1.5em;
+}
