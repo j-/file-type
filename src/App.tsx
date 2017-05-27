@@ -3,6 +3,7 @@ import './App.css';
 import { Observable, Subscription } from 'rxjs';
 import * as fileType from 'file-type';
 import { FileTypeResult } from 'file-type';
+import ProjectDescription from './ProjectDescription';
 
 const { fromEvent, merge } = Observable;
 
@@ -68,21 +69,7 @@ class App extends React.Component<{}, State> {
 		return (
 			<div className="App">
 				<h1>File Types</h1>
-				<p>
-					Drag+drop or copy+paste files into this window. Uses
-					{' '}
-					<code><a href="https://github.com/sindresorhus/file-type">file-type</a></code>
-					{' '}
-					to determine the type of each file based on its
-					{' '}
-					<a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic number</a>.
-					{' '}
-					Pasting files in Chrome will not work until
-					{' '}
-					<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=361980">Issue 361980</a>
-					{' '}
-					is resolved.
-				</p>
+				<ProjectDescription />
 				<ol>
 					{this.renderListItems()}
 				</ol>
