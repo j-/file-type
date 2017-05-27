@@ -76,6 +76,12 @@ class App extends React.Component<{}, State> {
 					to determine the type of each file based on its
 					{' '}
 					<a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic number</a>.
+					{' '}
+					Pasting files in Chrome will not work until
+					{' '}
+					<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=361980">Issue 361980</a>
+					{' '}
+					is resolved.
 				</p>
 				<ol>
 					{this.renderListItems()}
