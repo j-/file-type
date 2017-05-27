@@ -55,6 +55,7 @@ class App extends React.Component<{}, State> {
 		this.state = {
 			list: [],
 		};
+		this.clearFiles = this.clearFiles.bind(this);
 	}
 
 	public componentDidMount() {
@@ -74,11 +75,16 @@ class App extends React.Component<{}, State> {
 	}
 
 	public render() {
+		const canClear = this.state.list.length > 0;
+		const clearButton = canClear && (
+			<button type="button" onClick={this.clearFiles}>Clear</button>
+		);
 		return (
 			<div className="App">
 				<h1>File Types</h1>
 				<ProjectDescription />
 				<p>File list (latest at top)</p>
+				{clearButton}
 				<ol className="App-list">
 					{this.renderListItems()}
 				</ol>
@@ -93,6 +99,12 @@ class App extends React.Component<{}, State> {
 				<span className="App-file-type">{type || <em>Unknown</em>}</span>
 			</li>
 		));
+	}
+
+	private clearFiles() {
+		this.setState((state) => ({
+			list: [],
+		}));
 	}
 }
 
