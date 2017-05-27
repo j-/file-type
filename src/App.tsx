@@ -2,10 +2,9 @@ import * as React from 'react';
 import './App.css';
 import { Observable, Subscription } from 'rxjs';
 import * as fileType from 'file-type';
-import { FileTypeResult } from 'file-type';
 import ProjectDescription from './ProjectDescription';
 
-const { fromEvent, merge } = Observable;
+const { fromEvent, merge, zip } = Observable;
 
 // Event streams
 const pasteEvents = fromEvent<ClipboardEvent>(window, 'paste');
@@ -34,8 +33,17 @@ const buffers = files.flatMap((file) => (
 // Get file information from each buffer
 const fileTypes = buffers.map((result) => fileType(result));
 
+// Join file information
+const dataList = zip(files, fileTypes, (file, type) => ({
+	name: file.name,
+	type: type ? type.mime : null,
+}));
+
 interface State {
-	types: FileTypeResult[];
+	list: {
+		name: string;
+		type: string | null;
+	}[];
 }
 
 class App extends React.Component<{}, State> {
@@ -45,17 +53,17 @@ class App extends React.Component<{}, State> {
 	constructor() {
 		super();
 		this.state = {
-			types: [],
+			list: [],
 		};
 	}
 
 	public componentDidMount() {
 		this.dragDropEventSubscription = dragAndDropEvents
 			.subscribe((e) => e.preventDefault());
-		this.dataTransferSubscription = fileTypes
-			.subscribe((type) => (
+		this.dataTransferSubscription = dataList
+			.subscribe((data) => (
 				this.setState((state) => ({
-					types: state.types.concat(type),
+					list: state.list.concat(data),
 				}))
 			));
 	}
@@ -78,9 +86,10 @@ class App extends React.Component<{}, State> {
 	}
 
 	private renderListItems() {
-		return this.state.types.map((types, i) => (
+		return this.state.list.map(({ name, type }, i) => (
 			<li key={i}>
-				{types && types.mime}
+				<strong>{name}</strong><br />
+				<span>{type || <em>Unknown</em>}</span>
 			</li>
 		));
 	}
