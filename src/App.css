@@ -1,0 +1,4 @@
+.App-list {
+	display: flex;
+	flex-direction: column-reverse;
+}

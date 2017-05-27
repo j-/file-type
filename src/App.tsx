@@ -78,7 +78,8 @@ class App extends React.Component<{}, State> {
 			<div className="App">
 				<h1>File Types</h1>
 				<ProjectDescription />
-				<ol>
+				<p>File list (latest at top)</p>
+				<ol className="App-list">
 					{this.renderListItems()}
 				</ol>
 			</div>
