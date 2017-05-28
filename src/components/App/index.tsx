@@ -88,7 +88,7 @@ class App extends React.Component<Props, {}> {
 		);
 		return (
 			<div className="App">
-				<h1>File Types</h1>
+				<h1>File Type</h1>
 				<ProjectDescription />
 				<h2>File List (latest at top)</h2>
 				<p>{fileUpload}</p>
