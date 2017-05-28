@@ -16,6 +16,12 @@ export interface Props extends React.Props<{}> {
 	}[];
 }
 
+/**
+ * Maximum number of bytes to read from a file to determine its type.
+ * @see https://github.com/sindresorhus/file-type#input
+ */
+const MAX_BYTES = 4100;
+
 class App extends React.Component<Props, {}> {
 	private dragDropEventSubscription: Subscription;
 	private dataTransferSubscription: Subscription;
@@ -44,7 +50,7 @@ class App extends React.Component<Props, {}> {
 		// Get array buffer from each file
 		const buffers = files.flatMap((file) => (
 			new Promise<Buffer>((resolve) => {
-				const blob = file.slice(0, 4100);
+				const blob = file.slice(0, MAX_BYTES);
 				const reader = new FileReader();
 				reader.onload = () => resolve(reader.result);
 				reader.onerror = () => resolve();
