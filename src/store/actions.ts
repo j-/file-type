@@ -4,7 +4,7 @@ export interface AddFileAction {
 	type: 'ADD_FILE';
 	payload: {
 		name: string;
-		type?: string;
+		type: string | null;
 	};
 }
 
@@ -12,7 +12,7 @@ export const isAddFileAction = (action: Action): action is AddFileAction => (
 	action.type === 'ADD_FILE'
 );
 
-export const addFile = (payload: { name: string, type?: string }): AddFileAction => ({
+export const addFile = (payload: { name: string, type: string | null }): AddFileAction => ({
 	type: 'ADD_FILE',
 	payload,
 });

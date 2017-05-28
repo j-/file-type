@@ -7,27 +7,23 @@ import FileList from '../FileList';
 
 const { fromEvent, merge, zip } = Observable;
 
-interface State {
-	list: {
+export interface Props extends React.Props<{}> {
+	onAddFile: Function;
+	onClearFiles: Function;
+	files: {
 		name: string;
 		type: string | null;
 	}[];
 }
 
-class App extends React.Component<{}, State> {
+class App extends React.Component<Props, {}> {
 	private dragDropEventSubscription: Subscription;
 	private dataTransferSubscription: Subscription;
 	private fileInput: HTMLInputElement;
 
-	constructor() {
-		super();
-		this.state = {
-			list: [],
-		};
-		this.clearFiles = this.clearFiles.bind(this);
-	}
-
 	public componentDidMount() {
+		const { onAddFile } = this.props;
+
 		// Event streams
 		const pasteEvents = fromEvent<ClipboardEvent>(window, 'paste');
 		const dragEvents = fromEvent<DragEvent>(window, 'dragover');
@@ -69,11 +65,7 @@ class App extends React.Component<{}, State> {
 		this.dragDropEventSubscription = dragAndDropEvents
 			.subscribe((e) => e.preventDefault());
 		this.dataTransferSubscription = dataList
-			.subscribe((data) => (
-				this.setState((state) => ({
-					list: state.list.concat(data),
-				}))
-			));
+			.subscribe((data) => onAddFile(data));
 	}
 
 	public componentWillUnmount() {
@@ -82,10 +74,10 @@ class App extends React.Component<{}, State> {
 	}
 
 	public render() {
-		const { list } = this.state;
-		const canClear = list.length > 0;
+		const { onClearFiles, files } = this.props;
+		const canClear = files.length > 0;
 		const clearButton = canClear && (
-			<button type="button" onClick={this.clearFiles}>Clear Files</button>
+			<button type="button" onClick={() => onClearFiles()}>Clear Files</button>
 		);
 		const fileUpload = (
 			<input
@@ -101,15 +93,9 @@ class App extends React.Component<{}, State> {
 				<h2>File List (latest at top)</h2>
 				<p>{fileUpload}</p>
 				<p>{clearButton}</p>
-				<FileList files={list} />
+				<FileList files={files} />
 			</div>
 		);
-	}
-
-	private clearFiles() {
-		this.setState((state) => ({
-			list: [],
-		}));
 	}
 }
 

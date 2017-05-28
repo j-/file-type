@@ -5,9 +5,9 @@ import {
 	ClearFilesAction,
 } from './actions';
 
-type FilesReducerState = {
+export type FilesReducerState = {
 	name: string;
-	type: string;
+	type: string | null;
 }[];
 
 const DEFAULT_STATE: FilesReducerState = [];
@@ -25,3 +25,5 @@ export default (state = DEFAULT_STATE, action: AddFileAction | ClearFilesAction 
 			return state;
 	}
 };
+
+export const getFiles = (state: FilesReducerState) => state;
