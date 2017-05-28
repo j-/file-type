@@ -2,8 +2,8 @@ import * as React from 'react';
 import './App.css';
 import { Observable, Subscription } from 'rxjs';
 import * as fileType from 'file-type';
-import ProjectDescription from './ProjectDescription';
-import FileList from './FileList';
+import ProjectDescription from '../ProjectDescription';
+import FileList from '../FileList';
 
 const { fromEvent, merge, zip } = Observable;
 
