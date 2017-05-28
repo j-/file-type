@@ -20,11 +20,13 @@ export default (state = DEFAULT_STATE, action: AddFileAction | ClearFilesAction 
 			...state,
 			action.payload,
 		];
-	} else if (isClearFilesAction(action)) {
-		return [];
-	} else {
-		return state;
 	}
+
+	if (isClearFilesAction(action)) {
+		return [];
+	}
+
+	return state;
 };
 
 export const getFiles = (state: ReducerState) => state;
