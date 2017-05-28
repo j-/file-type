@@ -1,16 +1,6 @@
-import { Action } from 'redux';
+import { combineReducers } from 'redux';
+import files from './files';
 
-interface ReducerState {
-
-}
-
-const DEFAULT_STATE: ReducerState = {
-
-};
-
-export default (state = DEFAULT_STATE, action: Action) => {
-	switch (action.type) {
-		default:
-			return state;
-	}
-};
+export default combineReducers({
+	files,
+});
