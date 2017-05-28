@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "C:/Program Files/Git/file-type/";
+/******/ 	__webpack_require__.p = "/file-type/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 534);
@@ -19316,7 +19316,7 @@ var warning = __webpack_require__(5);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && __webpack_require__.i({"NODE_ENV":"production","PUBLIC_URL":"C:/Program Files/Git/file-type"}) && "production" === 'test') {
+if (typeof process !== 'undefined' && __webpack_require__.i({"NODE_ENV":"production","PUBLIC_URL":"/file-type"}) && "production" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -25833,7 +25833,7 @@ var warning = __webpack_require__(5);
 
 var ReactComponentTreeHook;
 
-if (typeof process !== 'undefined' && __webpack_require__.i({"NODE_ENV":"production","PUBLIC_URL":"C:/Program Files/Git/file-type"}) && "production" === 'test') {
+if (typeof process !== 'undefined' && __webpack_require__.i({"NODE_ENV":"production","PUBLIC_URL":"/file-type"}) && "production" === 'test') {
   // Temporary hack.
   // Inline requires don't work well with Jest:
   // https://github.com/facebook/react/issues/7240
@@ -42216,7 +42216,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function register() {
     if ("production" === 'production' && 'serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-            var swUrl = "C:/Program Files/Git/file-type" + "/service-worker.js";
+            var swUrl = "/file-type" + "/service-worker.js";
             navigator.serviceWorker
                 .register(swUrl)
                 .then(function (registration) {
@@ -42738,4 +42738,4 @@ module.exports = __webpack_require__(147);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.8358545f.js.map
+//# sourceMappingURL=main.e7a17b84.js.map
