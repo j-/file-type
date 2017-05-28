@@ -5,12 +5,12 @@ import {
 	ClearFilesAction,
 } from './actions';
 
-export type FilesReducerState = {
+export type ReducerState = {
 	name: string;
 	type: string | null;
 }[];
 
-const DEFAULT_STATE: FilesReducerState = [];
+const DEFAULT_STATE: ReducerState = [];
 
 export default (state = DEFAULT_STATE, action: AddFileAction | ClearFilesAction | Action) => {
 	switch (action.type) {
@@ -26,4 +26,4 @@ export default (state = DEFAULT_STATE, action: AddFileAction | ClearFilesAction 
 	}
 };
 
-export const getFiles = (state: FilesReducerState) => state;
+export const getFiles = (state: ReducerState) => state;

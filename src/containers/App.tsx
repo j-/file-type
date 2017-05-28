@@ -3,7 +3,7 @@ import App from '../components/App';
 import { addFile, clearFiles } from '../store/actions';
 
 import {
-	RootReducerState,
+	ReducerState,
 	getFiles,
 } from '../store/reducer';
 
@@ -14,7 +14,7 @@ interface StateProps {
 	}[];
 }
 
-const mapStateToProps = (state: RootReducerState) => ({
+const mapStateToProps = (state: ReducerState) => ({
 	files: getFiles(state),
 });
 

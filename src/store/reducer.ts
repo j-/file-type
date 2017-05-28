@@ -1,18 +1,15 @@
 import { combineReducers } from 'redux';
 
-import files, {
-	FilesReducerState,
-	getFiles as getFilesFromFilesState,
-} from './files';
+import * as files from './files';
 
-export type RootReducerState = {
-	files: FilesReducerState;
+export type ReducerState = {
+	files: files.ReducerState;
 };
 
-export default combineReducers<RootReducerState>({
-	files,
+export default combineReducers<ReducerState>({
+	files: files.default,
 });
 
-export const getFiles = (state: RootReducerState) => (
-	getFilesFromFilesState(state.files)
+export const getFiles = (state: ReducerState) => (
+	files.getFiles(state.files)
 );
