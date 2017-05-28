@@ -44339,7 +44339,7 @@ var App = (function (_super) {
         var clearButton = canClear && (React.createElement("button", { type: "button", onClick: function () { return onClearFiles(); } }, "Clear Files"));
         var fileUpload = (React.createElement("input", { type: "file", ref: function (input) { return _this.fileInput = input; }, multiple: true }));
         return (React.createElement("div", { className: "App" },
-            React.createElement("h1", null, "File Types"),
+            React.createElement("h1", null, "File Type"),
             React.createElement(ProjectDescription_1.default, null),
             React.createElement("h2", null, "File List (latest at top)"),
             React.createElement("p", null, fileUpload),
@@ -45093,4 +45093,4 @@ module.exports = __webpack_require__(162);
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=main.3da69f36.js.map
+//# sourceMappingURL=main.8f2dc9c2.js.map
