@@ -2,7 +2,9 @@ import { Action } from 'redux';
 
 import {
 	AddFileAction,
+	isAddFileAction,
 	ClearFilesAction,
+	isClearFilesAction,
 } from './actions';
 
 export type ReducerState = {
@@ -13,16 +15,15 @@ export type ReducerState = {
 const DEFAULT_STATE: ReducerState = [];
 
 export default (state = DEFAULT_STATE, action: AddFileAction | ClearFilesAction | Action) => {
-	switch (action.type) {
-		case 'ADD_FILE':
-			return [
-				...state,
-				(<AddFileAction> action).payload,
-			];
-		case 'CLEAR_FILES':
-			return [];
-		default:
-			return state;
+	if (isAddFileAction(action)) {
+		return [
+			...state,
+			action.payload,
+		];
+	} else if (isClearFilesAction(action)) {
+		return [];
+	} else {
+		return state;
 	}
 };
 
