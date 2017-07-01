@@ -3,20 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://skeoh.com/file-type",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "@types/file-type": "^0.0.2",
     "@types/jest": "^19.2.3",
     "@types/node": "^7.0.22",
     "@types/react": "^15.0.25",
     "@types/react-dom": "^15.5.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
-  },
-  "devDependencies": {
-    "@types/file-type": "^0.0.2",
     "@types/react-redux": "^4.4.40",
     "file-type": "^5.2.0",
     "gh-pages": "^1.0.0",
     "normalize.css": "^7.0.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-scripts-ts": "2.2.0",
     "redux": "^3.6.0",
