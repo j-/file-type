@@ -14,7 +14,7 @@
   "devDependencies": {
     "@types/file-type": "^0.0.2",
     "@types/react-redux": "^4.4.40",
-    "file-type": "^4.3.0",
+    "file-type": "^5.2.0",
     "gh-pages": "^1.0.0",
     "normalize.css": "^7.0.0",
     "react-redux": "^5.0.5",
