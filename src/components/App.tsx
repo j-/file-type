@@ -7,7 +7,7 @@ import FileList from './FileList';
 
 const { fromEvent, merge, zip } = Observable;
 
-export interface Props extends React.Props<{}> {
+export interface Props {
 	onAddFile: Function;
 	onClearFiles: Function;
 	files: {
@@ -22,7 +22,7 @@ export interface Props extends React.Props<{}> {
  */
 const MAX_BYTES = 4100;
 
-class App extends React.Component<Props, {}> {
+class App extends React.Component<Props> {
 	private dragDropEventSubscription: Subscription;
 	private dataTransferSubscription: Subscription;
 	private fileInput: HTMLInputElement;

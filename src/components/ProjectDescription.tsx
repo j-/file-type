@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const ProjectDescription = () => (
+const ProjectDescription: React.StatelessComponent = () => (
 	<div>
 		<p>
 			Use this tool to determine the type of a file without relying on its extension.
