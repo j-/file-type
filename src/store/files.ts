@@ -1,9 +1,9 @@
 import { Action } from 'redux';
 
 import {
-	AddFileAction,
+	ActionAddFile,
 	isAddFileAction,
-	ClearFilesAction,
+	ActionClearFiles,
 	isClearFilesAction,
 } from './actions';
 
@@ -14,7 +14,7 @@ export type ReducerState = {
 
 const DEFAULT_STATE: ReducerState = [];
 
-export default (state = DEFAULT_STATE, action: AddFileAction | ClearFilesAction | Action) => {
+export default (state = DEFAULT_STATE, action: ActionAddFile | ActionClearFiles | Action) => {
 	if (isAddFileAction(action)) {
 		return [
 			...state,

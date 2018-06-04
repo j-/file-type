@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-export interface AddFileAction {
+export interface ActionAddFile extends Action {
 	type: 'ADD_FILE';
 	payload: {
 		name: string;
@@ -8,23 +8,23 @@ export interface AddFileAction {
 	};
 }
 
-export const isAddFileAction = (action: Action): action is AddFileAction => (
+export const isAddFileAction = (action: Action): action is ActionAddFile => (
 	action.type === 'ADD_FILE'
 );
 
-export const addFile = (payload: { name: string, type: string | null }): AddFileAction => ({
+export const addFile = (payload: { name: string, type: string | null }): ActionAddFile => ({
 	type: 'ADD_FILE',
 	payload,
 });
 
-export interface ClearFilesAction {
+export interface ActionClearFiles extends Action {
 	type: 'CLEAR_FILES';
 }
 
-export const isClearFilesAction = (action: Action): action is ClearFilesAction => (
+export const isClearFilesAction = (action: Action): action is ActionClearFiles => (
 	action.type === 'CLEAR_FILES'
 );
 
-export const clearFiles = (): ClearFilesAction => ({
+export const clearFiles = (): ActionClearFiles => ({
 	type: 'CLEAR_FILES',
 });
