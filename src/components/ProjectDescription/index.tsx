@@ -16,7 +16,7 @@ const ProjectDescription = () => (
 			{' '}
 			Files pasted into a Chrome window may not appear due to
 			{' '}
-			<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=361980">Issue 361980</a>.
+			<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=316472">Issue 316472</a>.
 		</p>
 	</div>
 );
