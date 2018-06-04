@@ -9,7 +9,7 @@ export interface Props {
 	}[];
 }
 
-export default class FileList extends React.Component<Props, void> {
+export default class FileList extends React.Component<Props, {}> {
 	render() {
 		const { files } = this.props;
 		const children = files.map((file, i) => (

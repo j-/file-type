@@ -88,7 +88,7 @@ class App extends React.Component<Props, {}> {
 		const fileUpload = (
 			<input
 				type="file"
-				ref={(input) => this.fileInput = input}
+				ref={(input) => this.fileInput = input as HTMLInputElement}
 				multiple={true}
 			/>
 		);

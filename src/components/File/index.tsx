@@ -6,7 +6,7 @@ export interface Props {
 	type: string | null;
 }
 
-export default class File extends React.Component<Props, void> {
+export default class File extends React.Component<Props, {}> {
 	render() {
 		const { name, type } = this.props;
 		return (
