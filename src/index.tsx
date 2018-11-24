@@ -4,7 +4,7 @@ import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore } from './store/create';
 import { Provider } from 'react-redux';
-import 'normalize.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
 const store = createStore();

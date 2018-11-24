@@ -83,20 +83,35 @@ class App extends React.Component<Props> {
 		const { onClearFiles, files } = this.props;
 		const canClear = files.length > 0;
 		const clearButton = canClear && (
-			<button type="button" onClick={() => onClearFiles()}>Clear Files</button>
+			<button
+				className="btn btn-primary"
+				type="button"
+				onClick={() => onClearFiles()}
+			>
+				Clear Files
+			</button>
 		);
 		const fileUpload = (
-			<input
-				type="file"
-				ref={(input) => this.fileInput = input as HTMLInputElement}
-				multiple={true}
-			/>
+			<div className="input-group mb-3">
+				<div className="custom-file">
+					<input
+						className="custom-file-input"
+						id="App-file-input"
+						type="file"
+						ref={(input) => this.fileInput = input as HTMLInputElement}
+						multiple={true}
+					/>
+					<label className="custom-file-label" htmlFor="App-file-input">
+						Choose file
+					</label>
+				</div>
+			</div>
 		);
 		return (
-			<div className="App">
-				<h1>File Type</h1>
+			<div className="App container mt-5 mb-5">
+				<h1 className="mt-5 mb-5">File Type</h1>
 				<ProjectDescription />
-				<h2>File List (latest at top)</h2>
+				<h2 className="mt-5 mb-5">File List (latest at top)</h2>
 				<p>{fileUpload}</p>
 				<p>{clearButton}</p>
 				<FileList files={files} />
