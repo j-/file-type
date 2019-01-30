@@ -52,7 +52,7 @@ class App extends React.Component<Props> {
 			new Promise<Buffer>((resolve) => {
 				const blob = file.slice(0, MAX_BYTES);
 				const reader = new FileReader();
-				reader.onload = () => resolve(reader.result);
+				reader.onload = () => resolve(reader.result as Buffer);
 				reader.onerror = () => resolve();
 				reader.readAsArrayBuffer(blob);
 			})
