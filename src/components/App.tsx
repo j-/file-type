@@ -109,7 +109,8 @@ class App extends React.Component<Props> {
 		);
 		return (
 			<div className="App container mt-5 mb-5">
-				<h1 className="mt-5 mb-5">File Type</h1>
+				<a href="https://skeoh.com/" className="text-muted">&larr; skeoh.com</a>
+				<h1 className="mb-5">File Type</h1>
 				<ProjectDescription />
 				<h2 className="mt-5 mb-5">File List (latest at top)</h2>
 				<p>{fileUpload}</p>
